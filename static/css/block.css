@@ -14,7 +14,7 @@
 }
 .block {
   width: 100vw;
-  /*height: 100vh;*/
+  height: auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -28,4 +28,5 @@
       -ms-flex-pack: center;
           justify-content: center;
   overflow-x: scroll;
+  overflow-y: hidden;
 }
