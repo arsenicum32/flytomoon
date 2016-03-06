@@ -14,7 +14,8 @@
   "dependencies": {
     "cors": "^2.7.1",
     "express": "^4.13.4",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
+    "unirest": "^0.4.2"
   },
   "author": "arsenicum32",
   "license": "ISC",
