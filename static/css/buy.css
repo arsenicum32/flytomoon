@@ -1,0 +1,61 @@
+.redbutton{
+  text-decoration: none;
+  padding: 5px;
+  background: rgb(255,51,51);
+  color: white;
+}
+.buy {
+  border: 1px solid #eee;
+  background: #fff;
+  margin: 12px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-width: 220px;
+  min-width: 150px;
+  z-index: 1;
+}
+.buy img {
+  border-radius: 50%;
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 20%;
+}
+.buy h2 {
+  margin: 10%;
+}
+.buy .desc li {
+  margin-left: 10%;
+  margin-top: 2%;
+  width: 80%;
+  color: #333;
+  list-style-type: none;
+}
+.buy ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
+.buy .price {
+  margin-left: 10%;
+  color: #333;
+}
+.buy a {
+  margin: 10%;
+}
+.buy input {
+  margin-left: 10%;
+  margin-top: 2%;
+  width: 80%;
+  max-width: 240px;
+  border: none;
+  background: #eee;
+  font-size: 1em;
+  color: black;
+}
+@media (max-width: 486px) {
+  .buy {
+    margin: -120px;
+  }
+  .middle {
+    z-index: 2;
+  }
+}
