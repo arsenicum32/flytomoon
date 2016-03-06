@@ -127,7 +127,7 @@ body:before {
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
   z-index: -1;
-  background: url(//img/background.png) no-repeat center center fixed;
+  background: url(/img/background.jpg) no-repeat center center fixed;
   background-size: cover;
   -webkit-filter: sepia(0.5);
           filter: sepia(0.5);
