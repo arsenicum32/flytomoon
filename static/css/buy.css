@@ -1,3 +1,40 @@
+.buypanel{
+  position: fixed;
+  top: 40vh;
+  left: 0;
+  width: 100vw;
+  height: 20vh;
+  min-height: 150px;
+  background: white;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  display: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+          -webkit-flex-flow: column;
+          -webkit-flex-flow: column;
+              -ms-flex-flow: column;
+          flex-flow: column;
+}
+.buypanel *{
+  margin-top: 10px;
+}
+.buypanel p{
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+}
 .blockbuy{
   height: 150vh;
 }
@@ -14,6 +51,7 @@
   padding-top: 20px;
   padding-bottom: 20px;
   max-width: 220px;
+  width: 30vw;
   min-width: 150px;
   z-index: 1;
 }

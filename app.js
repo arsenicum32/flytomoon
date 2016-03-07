@@ -19,6 +19,10 @@ app.get('/neworder', function(req,res,next){
   }
 });
 
+app.get('/thanks', function(req,res,next){
+  res.sendFile(__dirname + '/thanks.html');
+})
+
 app.get('/', function(req, res, next){
   res.sendFile(__dirname + '/index.html');
 });
