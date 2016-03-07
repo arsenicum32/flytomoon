@@ -8,6 +8,16 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var currentname;
+var clients = {};
+
+var users = 0;
+var maxusers = 0;
+var srusers = 0;
+var visitorsall = 0;
+var session = 0;
+var arraylinks = {};
+
 app.use('/', express.static(__dirname + '/static'));
 app.use(cors());
 
@@ -17,6 +27,17 @@ app.get('/neworder', function(req,res,next){
   }else{
     res.json({error: "no param m"});
   }
+});
+
+app.get('/statistic', function(req,res,next){
+  res.json({
+    visnum: visitorsall,
+    maxusers: maxusers,
+    online: users,
+    sessionlength: Math.floor(session/visitorsall) ,
+    visitorsfromlink: arraylinks,
+    detals: clients,
+  });
 });
 
 app.get('/thanks', function(req,res,next){
@@ -32,28 +53,72 @@ app.get('/', function(req, res, next){
 testroom = io.of('/test');
 
 testroom.on('connection', function(socket){
-  console.log('new client!');
-  socket.on('getdata', function(msg){
-    testroom.emit('getdata', msg );
+  users++;visitorsall++;
+  if(users>maxusers) maxusers = users;
+  currentname = (new Date()).getTime();
+  clients[socket.id] = (new Date()).getTime();
+
+  //fixclients();
+
+  var currentfile =  __dirname + '/vis/test.txt';
+  //writelog( currentfile , 'newsession: '+socket.id+', time: '+ (new Date()).getTime() );
+
+  socket.on('myid', function(msg){
+    testroom.emit('yourid', {s: msg, id: socket.id });
   });
 
-  socket.on('fullinfopanel', function(msg){
-    fs.stat( __dirname + '/static/html/'+msg , function(err, stat){
-      if(err) console.log(err);
-      if(stat){
-        fs.readFile( __dirname + '/static/html/'+msg , function(err, data){
-          if (err) console.log(err);
-          testroom.emit('fullinfopanel', data.toString('utf8') );
-        });
-      }
-    });
+  socket.on('link', function(msg){
+    if(arraylinks.hasOwnProperty(msg)){
+      arraylinks[msg]++;
+    }else{
+      arraylinks[msg]=1;
+    }
   });
+
+  socket.on('start', function(msg){
+    console.log('start: '+msg);
+    //writelog( currentfile, msg);
+    //testroom.emit('getdata', msg );
+  });
+
+  socket.on('click', function(msg){
+    //writelog( currentfile, 'click to obj: '+msg+' from '+socket.id);
+  });
+  socket.on('disconnect', function(){
+    if(clients[socket.id]) delete clients[socket.id];
+    //fixclients();
+    users--;
+    session = (new Date()).getTime() - currentname;
+  })
 });
 
 http.listen(8000, function(){
   console.log('listening on *:3000');
 });
 
+function writelog( file, data ){
+  if(file&&data){
+    fs.appendFile( file ,  data+"\n", 'utf8' , function(err){
+                if (err){
+                  console.log('no file??? '+err);
+                }
+              });
+  }else{
+    console.log('no data or file');
+  }
+}
+
+function fixclients(){
+  if(true){
+    fs.appendFile( __dirname + '/vis/visitors.txt' , JSON.stringify( clients )+"\n" , 'utf8' , function(err){
+                if (err){
+                  console.log('no file??? '+err);
+                }
+              });
+  }else{
+    console.log('no data or file');
+  }
+}
 
 function sendNotice(response, text){
   var VKsendQ =
