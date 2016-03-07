@@ -129,9 +129,9 @@ body:before {
   z-index: -1;
   background: url(/img/background.jpg) no-repeat center center fixed;
   background-size: cover;
-  -webkit-filter: sepia(0.5);
-          filter: sepia(0.5);
-  opacity: 0.4;
+  -webkit-filter: sepia(0.05);
+          filter: sepia(0.05);
+  opacity: 1;
 }
 
 .grid {
