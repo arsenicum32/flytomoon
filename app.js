@@ -29,6 +29,16 @@ app.get('/neworder', function(req,res,next){
   }
 });
 
+app.get('/reset', function(req,res,next){
+  users = 0;
+  maxusers = 0;
+  srusers = 0;
+  visitorsall = 0;
+  session = 0;
+  arraylinks = {};
+  res.json({suka:"бля пиздец я заебался кодить"});
+});
+
 app.get('/statistic', function(req,res,next){
   res.json({
     visnum: visitorsall,
