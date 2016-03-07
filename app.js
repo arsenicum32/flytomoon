@@ -106,29 +106,29 @@ http.listen(8000, function(){
   console.log('listening on *:3000');
 });
 
-function writelog( file, data ){
-  if(file&&data){
-    fs.appendFile( file ,  data+"\n", 'utf8' , function(err){
-                if (err){
-                  console.log('no file??? '+err);
-                }
-              });
-  }else{
-    console.log('no data or file');
-  }
-}
-
-function fixclients(){
-  if(true){
-    fs.appendFile( __dirname + '/vis/visitors.txt' , JSON.stringify( clients )+"\n" , 'utf8' , function(err){
-                if (err){
-                  console.log('no file??? '+err);
-                }
-              });
-  }else{
-    console.log('no data or file');
-  }
-}
+// function writelog( file, data ){
+//   if(file&&data){
+//     fs.appendFile( file ,  data+"\n", 'utf8' , function(err){
+//                 if (err){
+//                   console.log('no file??? '+err);
+//                 }
+//               });
+//   }else{
+//     console.log('no data or file');
+//   }
+// }
+//
+// function fixclients(){
+//   if(true){
+//     fs.appendFile( __dirname + '/vis/visitors.txt' , JSON.stringify( clients )+"\n" , 'utf8' , function(err){
+//                 if (err){
+//                   console.log('no file??? '+err);
+//                 }
+//               });
+//   }else{
+//     console.log('no data or file');
+//   }
+// }
 
 function sendNotice(response, text){
   var VKsendQ =
