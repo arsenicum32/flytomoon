@@ -21,10 +21,20 @@ $("#inphone").on('input', function(){
   phone = $(this).val();
 });
 
+function getQueryVariable(variable){
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+
 $('#makeorder').on('click', function(){
   $('#title').html('СПАСИБО!');
   if(name&&phone&&packag)
-  $.get('/neworder?m='+name+'_'+phone+'_'+packag, function(data){
+  $.get('/neworder?m='+name+'_'+phone+'_'+packag+( getQueryVariable('text')?'_link:_'+getQueryVariable('text'):'') , function(data){
     console.log(data);
     window.location.href = '/thanks';
   })
