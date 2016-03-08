@@ -42,12 +42,24 @@ $('#makeorder').on('click', function(){
 
 $('#buypanel').hide();
 
+var leavetime = 0;
+var inter;
+
 $('#buypanel').on({
   'mouseover': function(){
     mousePOSOV = 0;
+    leavetime = 0;
+    if(inter) clearInterval(inter);
   },
   'mouseleave': function(){
     mousePOSOV = 1;
-    $('#buypanel').hide(500);
+    inter = setInterval(function(){
+       if(leavetime>22){
+         $('#buypanel').hide(500);
+         clearInterval(inter);
+       }else{
+         leavetime++;
+       }
+    }, 100);
   }
 });
